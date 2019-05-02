@@ -3,16 +3,13 @@ import React, { Component } from "react";
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.handleLogout = this.handleLogout.bind(this);
   }
-  handleLogout = () => {
-    window.localStorage.clear();
-  };
+
   render() {
     return (
       <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             Doctors Application
           </a>
           <button

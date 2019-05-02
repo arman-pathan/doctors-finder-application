@@ -128,31 +128,6 @@ class SearchDoctors extends Component {
               onChange={this.onChange}
             />
           </div>
-          {/* 
-          <select
-            className="form-control mb-2 mr-sm-2"
-            onChange={this.onChange}
-            id="ratings"
-            name="ratings"
-          >
-            <option disabled value>
-              Select rating
-            </option>
-            <option value="1">3.2</option>
-            <option value="2">3.8</option>
-            <option value="3">4.8</option>
-            <option value="4">5.0</option>
-            <option value="5">3.7</option>
-          </select> */}
-
-          {/* <input
-            type="text"
-            class="form-control mb-2 mr-sm-2"
-            id="ratings"
-            name="ratings"
-            placeholder="Enter rating"
-            onChange={this.onChange}
-          /> */}
 
           <button type="submit" class="btn btn-primary buttonstyle">
             Search

@@ -10,51 +10,48 @@ class Fulldetails extends Component {
   constructor(props) {
     super(props);
 
-    const {
-      area,
-      speciality,
-      name,
-      ratings,
-      result
-    } = this.props.location.state;
+    const { area, speciality, name, ratings } = this.props.location.state;
 
     this.state = {
       area: area,
       speciality: speciality,
       name: name,
       ratings: ratings,
-      result: {}
+      clicked: false,
+      result: []
     };
-    this.state.result = result.filter(
-      doc =>
-        doc.speciality === this.state.speciality && doc.name !== this.state.name
-    );
+  }
+
+  componentDidMount() {
+    axios
+      .get(`http://localhost:5000/doctor/${this.state.speciality}`)
+      .then(response => {
+        const result = response.data;
+        const finalresult = result.filter(
+          doc =>
+            doc.speciality === this.state.speciality &&
+            doc.name !== this.state.name
+        );
+        this.setState({
+          result: finalresult
+        });
+      });
   }
 
   render() {
-    console.log(this.state);
-    let y = this.state.result;
-
-    let x = y.sort(function(a, b) {
-      console.log(a, b);
-      return parseInt(a.ratings) - parseInt(b.ratings);
-    });
-    console.log(x);
-    console.log(y);
-
     let alldetails = this.state.result.map(doctor => {
       return (
         <div class="media-body cardstyle">
           <h4 class="card-title p-2 mt-2 ">
             <Link
+              onClick={this.handleSimilar}
               to={{
-                pathname: "/",
+                pathname: "",
                 state: {
                   area: doctor.area,
                   speciality: doctor.speciality,
                   name: doctor.name,
-                  ratings: doctor.ratings,
-                  result: this.state.result
+                  ratings: doctor.ratings
                 }
               }}
               role="button"
@@ -68,34 +65,6 @@ class Fulldetails extends Component {
           <br />
         </div>
       );
-      //   return (
-      //     <div class="media-body " style={{ border: "1px solid" }}>
-      //       <h4 class="card-title p-2 mt-2 ">
-      //         <Link
-      //           to={{
-      //             pathname: "/fulldetails",
-      //             state: {
-      //               area: doctor.area,
-      //               speciality: doctor.speciality,
-      //               name: doctor.name,
-      //               ratings: doctor.ratings,
-      //               result: this.state.result
-      //             }
-      //           }}
-      //           role="button"
-      //         >
-      //           {doctor.name}
-      //         </Link>
-      //       </h4>
-      //       <p class="card-text styledescription">
-      //         <span> Doctor Area:{doctor.area} </span>
-      //         <span> Doctor speciality: {doctor.speciality} </span>
-      //         <span> Doctor Name: {doctor.name} </span>
-      //         <span> Doctor Rating: {doctor.ratings} </span>
-      //       </p>
-      //       <br />
-      //     </div>
-      //   );
     });
     console.log(this.state.result);
     return (
@@ -108,7 +77,7 @@ class Fulldetails extends Component {
               <br />
               <br />
 
-              <p className="heading"> DETAILS FOR {this.state.name} </p>
+              <p className="heading"> DETAILS FOR DR. {this.state.name} </p>
               <table cellpadding="20px">
                 <tr>
                   <td className="heading">LOCATION</td>
