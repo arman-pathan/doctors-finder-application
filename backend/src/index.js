@@ -5,14 +5,14 @@ var cors = require("cors");
 var Doctors = require("./models/Doctors");
 var { mongoose } = require("./config/db-connection/mongoose");
 
-// app.use(cors({ origin: "http://13.52.74.16", credentials: true }));
-app.use(cors());
+app.use(cors({ origin: "http://13.52.74.16:3000", credentials: true }));
+// app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Allow CORS Access Control
 app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://13.52.74.16:3000/");
+  res.setHeader("Access-Control-Allow-Origin", "http://13.52.74.16:3000");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
