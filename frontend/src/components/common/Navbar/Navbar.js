@@ -19,6 +19,13 @@ class Navbar extends Component {
           >
             <span class="navbar-toggler-icon" />
           </button>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">
+                Home <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto" />
             <span class="navbar-text">Submitted by Arman Pathan</span>

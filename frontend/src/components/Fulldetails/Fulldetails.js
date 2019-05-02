@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../common/Navbar/Navbar";
 
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Fulldetails/FullDetails.css";
 
@@ -22,6 +22,17 @@ class Fulldetails extends Component {
     };
   }
 
+  handleSimilar(doctor, e) {
+    console.log("Parameter", doctor);
+    console.log("Event", e);
+    this.setState({
+      area: doctor.area,
+      speciality: doctor.speciality,
+      name: doctor.name,
+      ratings: doctor.ratings
+    });
+  }
+  // http://54.193.24.133:5000
   componentDidMount() {
     axios
       .get(`http://54.193.24.133:5000/doctor/${this.state.speciality}`)
@@ -43,21 +54,12 @@ class Fulldetails extends Component {
       return (
         <div class="media-body cardstyle">
           <h4 class="card-title p-2 mt-2 ">
-            <Link
-              onClick={this.handleSimilar}
-              to={{
-                pathname: "",
-                state: {
-                  area: doctor.area,
-                  speciality: doctor.speciality,
-                  name: doctor.name,
-                  ratings: doctor.ratings
-                }
-              }}
-              role="button"
+            <button
+              class="btn btn-link"
+              onClick={e => this.handleSimilar(doctor, e)}
             >
               {doctor.name}
-            </Link>
+            </button>
           </h4>
           <p class="card-text styledescription">
             <span> Location:{doctor.area} </span>
