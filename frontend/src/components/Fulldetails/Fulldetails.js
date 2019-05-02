@@ -24,7 +24,7 @@ class Fulldetails extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/doctor/${this.state.speciality}`)
+      .get(`http://54.193.24.133:5000/doctor/${this.state.speciality}`)
       .then(response => {
         const result = response.data;
         const finalresult = result.filter(

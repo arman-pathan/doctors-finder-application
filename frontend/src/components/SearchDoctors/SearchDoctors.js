@@ -40,24 +40,26 @@ class SearchDoctors extends Component {
       name: this.state.name,
       ratings: this.state.ratings
     };
-    axios.post("http://localhost:5000/doctor/doctors", data).then(response => {
-      if (response.status == 200) {
-        console.log("Searched successfully");
-        console.log("Response data", response);
-        console.log("Response data", response.data);
+    axios
+      .post("http://54.193.24.133:5000/doctor/doctors", data)
+      .then(response => {
+        if (response.status == 200) {
+          console.log("Searched successfully");
+          console.log("Response data", response);
+          console.log("Response data", response.data);
 
-        const result = response.data;
-        console.log("Result ", result);
+          const result = response.data;
+          console.log("Result ", result);
 
-        this.setState({
-          result: result
-        });
-      } else {
-        this.setState({
-          result: []
-        });
-      }
-    });
+          this.setState({
+            result: result
+          });
+        } else {
+          this.setState({
+            result: []
+          });
+        }
+      });
   };
   render() {
     let count = this.state.result.length;
