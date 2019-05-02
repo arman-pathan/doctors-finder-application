@@ -1,0 +1,28 @@
+.form-inline {
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.buttonstyle {
+  padding: 2%;
+}
+
+.coverpic {
+  background-image: url("../../../src/images/hospital.png");
+  background-size: cover;
+  height: 1000px;
+}
+
+.cardstyle {
+  background: azure;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  margin-top: 3%;
+  height: 100px;
+  width: 400px;
+}
+
+.pages {
+  margin-top: -7%;
+  margin-left: 5%;
+}

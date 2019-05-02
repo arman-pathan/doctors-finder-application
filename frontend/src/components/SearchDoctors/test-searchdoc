@@ -1,0 +1,121 @@
+import React, { Component } from "react";
+import Navbar from "../common/Navbar/Navbar";
+import { Redirect } from "react-router";
+import axios from "axios";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+class SearchDoctors extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      area: "",
+      speciality: "",
+      name: "",
+      ratings: "",
+      result: []
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleSearch = e => {
+    e.preventDefault();
+    const data = {
+      area: this.state.area,
+      speciality: this.state.speciality,
+      name: this.state.name,
+      ratings: this.state.ratings
+    };
+    axios.post("http://localhost:5000/doctor/doctors", data).then(response => {
+      if (response.status == 200) {
+        console.log("Searched successfully");
+        console.log("Response data", response);
+        console.log("Response data", response.data);
+
+        const result = response.data;
+        console.log("Result ", result);
+
+        this.setState({
+          result: result
+        });
+      } else {
+        this.setState({
+          result: ["No data found for doctors"]
+        });
+      }
+    });
+
+    this.props.history.push({
+      pathname: "/searchresults",
+      state: {
+        result: this.state.result
+      }
+    });
+  };
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <form onSubmit={this.handleSearch} class="form-inline">
+          <input
+            type="text"
+            class="form-control mb-2 mr-sm-2  input-textbox "
+            id="area"
+            name="area"
+            onChange={this.onChange}
+            placeholder="Area"
+            required
+            autoFocus
+          />
+
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">From:</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="speciality"
+              name="speciality"
+              placeholder="speciality"
+              onChange={this.onChange}
+              required
+            />
+          </div>
+
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">To:</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="name"
+              onChange={this.onChange}
+              required
+            />
+          </div>
+
+          <input
+            type="text"
+            class="form-control mb-2 mr-sm-2"
+            id="ratings"
+            name="ratings"
+            placeholder="ratings"
+            onChange={this.onChange}
+            required
+          />
+
+          <button type="submit" class="btn btn-primary md-3  searchbutton">
+            Search
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SearchDoctors;
