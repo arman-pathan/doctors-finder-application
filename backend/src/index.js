@@ -73,7 +73,7 @@ app.post("/doctor/doctors", function(req, res) {
     });
 });
 
-//API for similar doctors based on thier speciality
+//API for similar doctors based on their speciality
 app.get("/doctor/:speciality", function(req, res) {
   console.log("Inside search ");
   console.log(req.params.speciality);
