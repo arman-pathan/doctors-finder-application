@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../common/Navbar/Navbar";
-import { Redirect } from "react-router";
+
 import axios from "axios";
 import Pagination from "../common/Pagination/pagination";
 import { paginate } from "../../utils/paginate";
@@ -43,7 +43,7 @@ class SearchDoctors extends Component {
     axios
       .post("http://54.193.24.133:5000/doctor/doctors", data)
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log("Searched successfully");
           console.log("Response data", response);
           console.log("Response data", response.data);
