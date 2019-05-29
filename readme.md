@@ -1,6 +1,6 @@
-# SIMILAR-DOCTORS-PRACTICE_FUSION
+# SIMILAR-DOCTORS-APPLICATION
 
-Repository for Practice Fusion Coding exercise
+Repository for SIMILAR-DOCTORS-APPLICATION
 
 ---
 
